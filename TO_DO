@@ -1,0 +1,88 @@
+List of things to do:
+
+* Find/investigate compatibility with other friend-seeking Bluetooth
+  applications 
+
+* Keep a list of interesting names, countries and other profile information,
+  so that when a matching profile appeares the user gets a special
+  notification.
+
+* Possibility to send small e-mail type messages to other users or
+  communities. These messages would be saved and one could reply to them.
+
+* Implement deletion of expired temporary files
+
+* Optimize community meta data lookups
+
+* Wait for zombies spawned from openfile.py
+
+* Add "leave community" menu option
+
+* Community based content search and visualization
+
+* Key exchange -> join into private personal community
+
+* filesharing.native_path vs serve_fname
+* Query options class
+* Add "community chat" button to community member view
+* mtime check to meta cache
+
+* There are lots of communities. It is not possible to show them all.
+  - Search communities functionality
+
+* Friend status into user profiles: some kind of special notification
+  about friends in close proximity
+  - friend popup dialog when friend appears
+
+* Need 'All users' community view that contains all users from the database.
+  Add a menu item that goes into 'all users' community.
+  - Should we show offline users in personal communities?
+
+* Temporary join into a community so that chat messages are routed properly;
+  Starting message plugin for a community implies a temporary join to the
+  channel.
+
+* Implement "open download directory" for workstation Linux systems
+
+* Make send file transfer dialog visible before user has accepted the
+ transfer
+
+* Add a cancel button to the send file transfer dialog
+
+* Give a more verbose notification when opening U2U chat (high priority
+  notification maybe)
+
+* Main view's "Messages" button should pop up a menu that has two choices:
+  "message board" and "message in a bottle"
+
+* A better progress indicator GUI
+
+* 2010-01-15 feedback:
+  - show myself in personal communities as well to be consistent with
+    peer communities
+  - make key exchange with two key presses (visual hash comparison)
+  - show a visual difference between peer and personal communities in
+    the main view
+  - radar:
+    - avoid user icon interleaving in radar plugin
+    - make user icons smaller in radar plugin
+    - put icons _between_ arcs, not intersecting arcs, with respect
+      to hop distance
+  - not possible to publish msg board items to a given community. they
+    always go to the whole proximate commununity.
+
+* Audit replies that containt 0 answers. The reply message can be something
+  that need not be sent over network.
+
+* BUG: automatic scrolling does not always work in chat
+
+* Display downloader's nick with file transfers
+
+* In filesharing, directory metadata is read-only
+
+* Create a FUSE filesystem for a remote fileshare
+
+* Fix SHA1 sums of messages; message concatenation for SHA1 needs a separator
+  value to avoid ambiguity
+
+* Do not trust Share_Meta 'src' field (reject my uid from others)

@@ -1,0 +1,9 @@
+Package: proximate
+Version: {VERSION}-1
+Section: user/extras
+Priority: extra
+Architecture: armel
+Depends: python-hildon, python-gtk2, python-dbus
+Installed-Size: 1600
+Maintainer: Heikki Orsila, Janne Kulmala, Antti Laine
+Description: Proximate is an ad hoc peer-to-peer social networking application

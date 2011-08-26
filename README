@@ -1,0 +1,24 @@
+Proximate - Peer-to-peer social networking
+
+Proximate is a social peer-to-peer (P2P) application designed for local 
+device to device networking.
+
+Proximate provides social communities with several user functions: 
+Messaging, filesharing, and message board. The application is designed 
+to be completely P2P, that is, servers are not needed. It only assumes 
+TCP/IP networking which means that it works over wireless/wired links 
+such as ad hoc WLAN and Ethernet LAN. The application is written in 
+Python for GNU/Linux systems with GTK+ GUI, Nokia N900 being the primary 
+platform.
+
+Proximate was created in co-operation between Tampere University of
+Technology and Nokia Research Center. The project started at the
+beginning of 2008.
+
+Project web site:
+    http://www.tkt.cs.tut.fi/research/daci/twin_overview.html
+
+Copyright (C) 2008-2011 Nokia Corporation. All rights reserved.
+
+This software is licensed under The Clear BSD license.
+See the LICENSE file for more details.

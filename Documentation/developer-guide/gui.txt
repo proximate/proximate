@@ -1,0 +1,111 @@
+Plugin GUIs
+===========
+
+Graphical user interfaces for plugins are written with PyGTK. Proximate's GUI
+consists of two types of windows: pages, which are shown one at the time,
+and dialogs, which _should_ be shown one at a time. Pages fill the whole
+application and are switched with the arrow icon on the left of the
+notification bar.
+
+It is recommended that GUI and core logic are separated. Also, it is
+recommended that GUI and core code exist in different code modules.
+Core logic modules have a function named init(), which is called
+on program startup before the GUI system exists.
+GUI modules have a function named init_ui(), which is called after
+the GUI system has been created.
+
+Creating a GUI for a plugin consists of four steps:
+
+1. Write a GUI class for the GUI module. The GUI class should create a
+GUI page for itself. The GUI page is a
+gtk.Box object (a vertical or a horizontal layout object) which is then
+added to the list of pages in the GUI Handler.
+
+2. Add the page to the main GUI by calling add_page_to_root_notebook() from GUI
+Handler
+
+3. Add an event to the GUI by calling register_user_event() or
+register_com_event() from Community GUI, depending on wheter your plugin's
+actions will deal with single user or whole communities (or both).
+
+4. Write init_ui() function into GUI code module that creates the GUI object
+for the plugin
+
+API
+---
+This is the list of functions you should use to create and attach you GUI to
+Proximate.
+
+PROXIMATE_Gui
+~~~~~~~~
+add_page(page)::
+    Adds a page to the GUI's list of pages. Page object must be derived
+    from the GUI_Page class. Page object can override the back_action()
+    method to get a notification when the page is the back button gets
+    clicked.
+
+show_page(page)::
+    Shows a page.
+
+hide_page(page)::
+    Goes back to previous shown page.
+
+remove_root_notebook_page(page)::
+    Removes (and possibly hides) a pages from GUI's list of pages.
+
+get_current_page()::
+    Returs the current page object.
+
+get_main_window()::
+    Returs the main window object.
+
+add_statusbar_icon(icon_pixbuf, tooltip_text, callback_function)::
+    Adds an icon from the right of the notification bar. Callback will be
+    called when the icon is clicked. Returns the eventbox created for the
+    statusbar icon.
+
+remove_statusbar_icon(eventbox_widget)::
+    Removes a statusicon.
+
+Community_GUI
+~~~~~~~~~~~~~
+register_com_event(icon_pixbuf, name, callback_function)::
+    Adds an event to the list of community events. Callback will be called
+    when the event is dragged on a community.
+
+register_user_event(icon_pixbuf, name, callback_function)::
+    Adds and event to the list of user event. Callback will be called when
+    the event is dragged on a user.
+
+Example
+-------
+
+[source,python]
+---------------
+import gtk
+from plugins import get_plugin_by_type
+from proximateprotocol import PLUGIN_TYPE_COMMUNITY
+
+class Plugin_GUI_Example:
+    def __init__(self, main_gui):
+        self.main_gui = main_gui
+        self.community_plugin = get_plugin_by_type(PLUGIN_TYPE_COMMUNITY)
+
+        self.page = gtk.VBox()
+        self.greeting = gtk.Label('My first graphical plugin')
+        self.page.pack_start(self.greeting)
+        self.icon = gtk.pixbuf_new_from_file('plugin_icon.png')
+
+        main_gui.add_page_to_root_notebook(self.page, 'My plugin')
+        self.community_plugin.community_gui.register_com_event(self.icon,
+            'My plugin', self.run)
+
+    def run(self, com):
+        self.greeting.set_label('My first graphical plugin was dragged
+            on %s' %(com.get('name')))
+        self.main_gui.set_root_notebook_page(self.page)
+        self.page.show_all()
+
+def init_ui(main_gui):
+    Plugin_GUI_Example(main_gui)
+---------------

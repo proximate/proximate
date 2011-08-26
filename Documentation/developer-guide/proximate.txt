@@ -1,0 +1,46 @@
+Proximate
+====
+
+Proximate is a peer-to-peer social networking tool that was especially
+designed for ad hoc WLAN, but it (of course) works on common IP
+networks too.  It is completely peer-to-peer, which means that all
+parties are equal. The application does not trust any party by
+default, unless the user instructs it to trust someone.
+
+Users can share files, send messages, chat, send mail, podcast new content
+into the network. The content propagates manually and automatically in the
+network.
+
+Proximate program consists, roughly, from plugins, utility modules and GUI.
+GUI logic is separated from the underlying core logic so that the GUI
+can be changed independently of the core logic. This helps porting for
+other platforms. However, GUI is not especially modular currently, so
+porting for another GUI kit is far from trivial.
+
+Brief summary of technical features:
+
+* Implemented with peer-to-peer principles (all peers are equal)
+* Coded with Python (portable between Linux/GTK systems)
+* GUI and core logic is separated -> there is potential for a port to
+  another UI toolkit
+* Single threaded (in glib event loop)
+* Asynchronous communication based on callbacks (uses TCP sockets)
+* Peer discovery through UDP broadcasts in local network
+  (non-local networking is not currently supported, but it has been
+  planned)
+* Implements yet another filesharing push/pull protocol
+  - A user may publish zero or more files or directories with meta data
+* Listens to a single TCP port
+* Peer-to-peer community chat protocol
+* Uses bencode serialization protocol (from the BitTorrent protocol),
+  and a some compact custom protocols implemented for Proximate
+* Uses plugin design pattern; most functionality is implemented in
+  plugins (classes derived from the Plugin class)
+* Compact network protocol (non-bloated, unlike XML)
+
+This developer manual has several sections:
+
+* link:proximate.html[Introduction] (this section)
+* link:terminology.html[Terminology] (*very important*)
+* link:plugins.html[Plugins]
+* link:files.html[Files]

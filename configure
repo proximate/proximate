@@ -1,0 +1,98 @@
+#!/bin/sh
+
+error() {
+    echo "Configure error:" "$@" >/dev/stderr
+    exit 1
+}
+
+get_executable_path() {
+    for d in /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin ; do
+	n="$d/$1"
+	if test -x "$n" ; then
+	    echo "$n"
+	    break
+	fi
+    done
+}
+
+version=$(cat version)
+prefix="/usr/local"
+
+for opt in "$@" ; do
+        case $opt in
+        --prefix=*)
+                prefix=`echo $opt | sed -n 's/--prefix=\(.*\)/\1/p'`
+                ;;
+	--source-python=*)
+                sourcepython=`echo $opt | sed -n 's/--source-python=\(.*\)/\1/p'`
+                ;;
+	--target-python=*)
+                targetpython=`echo $opt | sed -n 's/--target-python=\(.*\)/\1/p'`
+                ;;
+        --help)
+                echo ""
+                echo "Valid options are:"
+                echo "--prefix=dir           Install to prefix 'dir'"
+                echo "--package-prefix=dest  Pretend to install to the prefix,"
+                echo "                       but copy files to 'dest/prefix' on make install"
+		echo "--source-python=exe    Set python interpreter for the source machine"
+		echo "--target-python=exe    Set python interpreter for the target machine"
+                exit
+                ;;
+        esac
+done
+
+if test "x$sourcepython" = "x" -o "x$targetpython" = "x" ; then
+    pythonname=$(get_executable_path python2.5)
+    if test -z "$pythonname" ; then
+	pythonname="/usr/bin/env python2.5"
+	ok=$($pythonname -c 'print "OK"' 2>/dev/null)
+	if test "$ok" != "OK" ; then
+	    echo "Python 2.5 not found. Using default python (maybe a bad idea!)."
+	    pythonname="/usr/bin/env python"
+	    ok=$($pythonname -c 'print "OK"')
+	    if test "$ok" != "OK" ; then
+		error "No Python interpreter available"
+	    fi
+	fi
+    fi
+fi
+if test -z "$sourcepython" ; then
+    sourcepython="$pythonname"
+fi
+if test -z "$targetpython" ; then
+    targetpython="$pythonname"
+fi
+
+for srcname in compile.py.in proximate.in proximatetracer.in ; do
+    dstname=$(basename "$srcname" ".in")
+    sed -e "s|{SOURCEPYTHON}|$sourcepython|g" \
+	-e "s|{TARGETPYTHON}|$targetpython|g" \
+	-e "s|{VERSION}|$version|g" \
+	< "$srcname" > "$dstname"
+    chmod u+x "$dstname"
+done
+
+proximateexe="$prefix/lib/proximate/proximate"
+proximatebin="$prefix/bin/proximate"
+
+cat > proximatelauncher <<EOF
+#!/bin/sh
+
+exec "$proximateexe" "\$@"
+EOF
+chmod u+x proximatelauncher
+
+cat > settings <<EOF
+SOURCEPYTHON="$sourcepython"
+EOF
+
+sed -e "s|{PREFIX}|$prefix|g" \
+    < Makefile.in > Makefile
+
+sed -e "s|{PREFIX}|$prefix|g" \
+    < install.sh.in > install.sh
+chmod a+x install.sh
+
+sed -e "s|{PROXIMATEEXE}|$proximatebin|g" \
+    < proximate.desktop.in > proximate.desktop

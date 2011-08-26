@@ -1,0 +1,22 @@
+#!/bin/sh
+
+BINDIR="$DESTDIR{PREFIX}/bin"
+LIBDIR="$DESTDIR{PREFIX}/lib/proximate"
+DOCDIR="$DESTDIR{PREFIX}/share/doc/proximate"
+
+./compile.py *.py 
+mkdir -p -m 755 "$LIBDIR/images/icons" "$BINDIR" "$DOCDIR"
+cp images/icons/* "$LIBDIR/images/icons/"
+cp proximate *.pyc "$LIBDIR/"
+
+cp AUTHORS Documentation/icon*.txt "$DOCDIR"/
+
+chmod -R a+rX "$LIBDIR" "$DOCDIR"
+
+cp proximatelauncher "$BINDIR/proximate"
+chmod a+rx "$BINDIR/proximate"
+
+mkdir -p -m 755 "$DESTDIR/usr/share/pixmaps" "$DESTDIR/usr/share/applications/hildon"
+cp images/icons/proximate_task_icon.png "$DESTDIR/usr/share/pixmaps/"
+cp proximate.desktop "$DESTDIR/usr/share/applications/hildon/"
+chmod og+r "$DESTDIR/usr/share/pixmaps/proximate_task_icon.png" "$DESTDIR/usr/share/applications/hildon/proximate.desktop"

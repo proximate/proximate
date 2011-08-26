@@ -1,0 +1,10 @@
+all:	
+
+install:	
+	./install.sh
+
+deb:	
+	./deb/gen-deb.sh
+
+check:	
+	cd tests && ./run_tests.sh

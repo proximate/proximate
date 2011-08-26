@@ -1,0 +1,7 @@
+\#*
+*~
+*.pyc
+proximate
+proximateconfig.py
+.*.swp
+.*.proximatemeta

@@ -1,0 +1,27 @@
+Proximate - Peer-to-peer social networking
+
+Copyright (C) 2008-2011 Nokia Corporation. All rights reserved.
+
+This software is licensed under The Clear BSD license.
+See the LICENSE file for more details.
+
+Proximate was created in co-operation between Tampere University of 
+Technology and Nokia Research Center. The project started at the 
+beginning of 2008.
+
+Project web site:
+    http://www.tkt.cs.tut.fi/research/daci/twin_overview.html
+
+bencode.py is licensed inpendently. See LICENSE.bencode.
+
+Icons are copyrighted by their respective authors. See 
+Documentation/icons.txt for more information.
+
+List of significant authors:
+
+Heikki Orsila <heikki.orsila@tut.fi>
+Timo Heinonen <timo.heinonen@tut.fi>
+Janne Kulmala <janne.t.kulmala@tut.fi>
+Antti Laine <antti.a.laine@tut.fi>
+Tero Huttunen <tero.huttunen@tut.fi>
+Jussi Nieminen <jussi.v.nieminen@tut.fi>

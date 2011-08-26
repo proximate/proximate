@@ -1,0 +1,25 @@
+#!{TARGETPYTHON}
+#
+# Proximate - Peer-to-peer social networking
+#
+# Copyright (c) 2008-2011 Nokia Corporation
+#
+# All rights reserved.
+#
+# This software is licensed under The Clear BSD license.
+# See the LICENSE file for more details.
+#
+
+from options import get_options
+from support import set_version
+
+set_version('{VERSION}')
+
+(options, args) = get_options()
+
+if options.usegui:
+    import splash
+    splash.splash_show()
+
+import main
+main.main(options, args)

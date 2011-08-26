@@ -1,0 +1,107 @@
+Plugins
+=======
+
+Proximate consists roughly from three kinds of code: plugins, user interface code
+and utilities. Most functionality is implemented in plugins.
+Core logic and user interface code are separated so that it will not be
+hard to port for new user interface toolkits in the future.
+
+All plugins are derived from a base class named Plugin
+that is defined in plugins.py. Plugins are instantiated at program
+startup. Startup has three steps:
+
+1. Create and register a single instance of each type of plugin object.
+   E.g. Create Community_Plugin.
+
+2. Call ready() method for each plugin. At this point plugins may assume
+   that other plugins that are available are known. However, it is not
+   guaranteed that plugins are ready to offer services yet.
+
+3. Start user interface. At this point ready() has been called for all
+   plugins, and all plugins may assume that all services are available.
+
+List of core plugins
+--------------------
+Core plugins are available in all setups. These are the most commonly used
+plugins that provide services to new plugins. List of core plugins:
+
+Community_Plugin::
+	Community plugin provides
+	core services for managing and finding users and communities.
+	E.g. peer discovery in local network.
+Fetcher::
+	Fetcher plugin provides an asynchronous
+	function callback based reliable master-slave RPC system that
+	plugins can use to communicate with other devices.
+	Most communication (with few exceptions) uses fetcher.
+File_Sharing_Plugin::
+	File sharing plugin implements
+	file shares that are the mechanism to signal asynchronous events
+	and content in the network.
+Notification_Plugin::
+	Notification plugin is used to notify significant (and non-significant)
+	events to user interface.
+Podcast::
+	Podcast plugin is used to announce new content in special cases,
+	such as timed podcasts. File_Sharing_Plugin takes care of
+	common cases of podcasting.
+Scheduler_Plugin::
+	Scheduler plugin is used to handle time and calendar related events.
+	These events include garbage collection, wake up signal on given
+	time etc.
+File_Transfer_Plugin::
+	File_Transfer_Plugin is a direct push-style file sending plugin.
+State_Plugin::
+	State_Plugin manages basic configuration files and databases.
+	E.g. user database, community database.
+Network_Control::
+	Network control plugin manages and inspects operating system's network
+	layer. E.g. it can see the IP address changing.
+
+Plugin base class API
+---------------------
+
+A plugin should register itself when it is created.
+self.registed_plugin('name') must be called from the constructor.
+Base class constructor need not be called.
+The plugin base API is documented in the plugins.py.
+
+Plugin related functions
+------------------------
+
+plugins.get_plugin_by_type(name) -> a plugin object with a given name.
+
+Example plugin
+--------------
+
+[source,python]
+---------------
+from proximateprotocol import PLUGIN_TYPE_NOTIFICATION
+from plugins import Plugin, get_plugin_by_type
+
+class New_Plugin(Plugin):
+    def __init__(self):
+
+        # Register plugin
+	self.register_plugin('new-plugin-name')
+
+        self.notification = None
+
+    def ready(self):
+        """ This method is called after all plugins have been created.
+        References to other plugins can be acquired here. """
+
+	# Get reference to the notification plugin
+	self.notification = get_plugin_by_type(PLUGIN_TYPE_NOTIFICATION)
+
+    def user_appears(self, user):
+        """ Called when a new user appears in the network """
+
+	msg = '%s appears!' %(user.tag())
+	self.notification.notify(msg)
+
+def init(options):
+    # command line options are not usually used
+    New_Plugin()
+
+---------------

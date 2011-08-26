@@ -1,0 +1,18 @@
+#!{TARGETPYTHON}
+
+from options import get_options
+from support import set_version
+from sys import settrace
+from simple_tracer import traceit
+
+set_version('{VERSION}')
+
+(options, args) = get_options()
+
+if options.usegui:
+    import splash
+    splash.splash_show()
+
+settrace(traceit)
+import main
+main.main(options, args)

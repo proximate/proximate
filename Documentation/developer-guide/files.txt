@@ -1,0 +1,27 @@
+Files
+=====
+
+User and community profiles, and Proximate configuration are stored under
+$HOME/.proximate directory. Each user and community has a directory under
+that directory that contains relevant data associated with the user or
+community. Most data is stored in ".ini file format". See 
+http://en.wikipedia.org/wiki/.ini for overview.
+
+user profiles::
+     Directory $HOME/.proximate/u_0123456789abcdef contains
+     profile and data related to user with an uid 0123456789abcdef.
+
+community profiles::
+     Directory $HOME/.proximate/c_%d, where %d is a decimal coded integer,
+     are directories related to communities.
+
+Proximate configuration::
+     File $HOME/.proximate/config contains users personal identity, main window
+     dimensions etc. Note, user can assume other user's identity by two
+     means:
+
+     1. Use -t option to set Proximate config directory other than
+     $HOME/.proximate. This option is useful for testing two clients
+     simultaneously on the same host.
+     2. Use --identity=uid option to
+     select a known identity from the database.

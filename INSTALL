@@ -1,0 +1,21 @@
+Installation to N900
+--------------------
+
+Note: Installing requires shell access to the device and root priviledges!
+
+Required packages:
+- python2.5
+- python-gtk2
+- python-dbus
+- python-hildon
+- python-gst0.10
+
+Command for a simple installation case:
+$ apt-get install python2.5 python-gtk2 python-dbus python-hildon python-gst0.10
+
+After installing the required packages, Proximate can be installed the 
+usual way:
+
+./configure --prefix=/usr && ./install.sh
+
+Please note that "install.sh" must be run as root!

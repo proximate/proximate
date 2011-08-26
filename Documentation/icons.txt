@@ -1,0 +1,101 @@
+Icons that are under license defined in webappers_terms_of_use.txt:
+add_content_icon64.png
+browse_content_icon64.png
+delete_podcast_icon64.png
+edit_metadata_icon64.png
+edit_profile_icon64.png
+publish_content_icon64.png
+remove_content_icon64.png
+search_content_icon64.png
+
+Creative Commons Attribution 3.0 United States License, www.userinterfaceicons.com:
+For licensing information, see userinterfaceicons_terms_of_use.txt.
+publish_podcast_icon64.png
+subscribe_podcast_icon64.png
+
+Icons that are made by us:
+back_btn.png
+switch_btn.png
+thin_gray_line.png
+thin_white_line.png
+proximate_community_icon.png
+community_mgmt_icon64.png
+received_podcast_icon64.png
+radar.png
+send-low-connection.png
+send-no-connection.png
+
+From Tango icon package: Public domain.
+transfer_status_icon.png
+messaging_status_icon.png
+
+Modified from a image released to public domain
+"This file is from the Open Clip Art Library, which released it 
+explicitly into the public domain, using the Creative Commons Public 
+Domain Dedication"
+people_icon.png
+proximate_task_icon.png
+
+Public Domain
+Padlock.png
+
+From Nuvola icon theme for KDE 3.x.
+Author David Vignoni
+License LGPL 2.1 or any later
+key.png
+publish_podcast_icon128.png
+
+From Crystal Clear icon set, under LGPL:
+keys.png (modified)
+modify_icon128.png
+browse_network_files_icon128.png
+cancel_icon128.png
+checklist_icon128.png
+create_community_icon128.png
+default_community_icon.png
+friend_community_icon128.png
+no_icon128.png
+no_icon64.png
+ok_icon128.png
+play_icon128.png (modified)
+plus_icon128.png
+plus_icon64.png
+publish_file_icon128.png
+search_files_icon128.png
+send_file_icon128.png
+send-low-connection-128.png (modified)
+send-no-connection-128.png
+
+From Tango Project, under public domain:
+32px-Applications-system.png
+32px-Audio-x-generic.png
+32px-Image-x-generic.png
+32px-Folder.png
+32px-Folder-remote.png
+32px-Text-x-generic.png
+32px-Text-x-generic-template.png
+32px-Video-x-generic.png
+64px-messaging_channels.png
+64px-messaging_icon.png
+64px-messaging_status_icon.png
+48px-messaging_close.png
+32px-notification_important.png
+32px-notification_information.png
+64px-notification.png (modified)
+128px-default_user_icon.png (modified)
+32px-status_icon_bored.png (modified from status_icon_normal)
+32px-status_icon_crying.png
+32px-status_icon_happy.png
+32px-status_icon_normal.png
+32px-status_icon_sad.png
+32px-status_icon_smiling.png
+64px-status_icon_bored.png (modified from status_icon_normal)
+64px-status_icon_crying.png
+64px-status_icon_happy.png
+64px-status_icon_normal.png
+64px-status_icon_sad.png
+64px-status_icon_smiling.png
+48px-Go-previous.png
+64px-search_icon.png
+64px-refresh_icon.png
+64px-msgboard_icon.png

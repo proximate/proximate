@@ -1,0 +1,8 @@
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Proximate
+Exec={PROXIMATEEXE}
+Icon=proximate_task_icon
+Type=Application
